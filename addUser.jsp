@@ -1,0 +1,45 @@
+<%
+    // Session + role check (ADMIN only)
+    if (session == null || session.getAttribute("role") == null ||
+        !"ADMIN".equals(session.getAttribute("role"))) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add User</title>
+</head>
+<body>
+
+<h2>Add New User</h2>
+
+<form action="addUser" method="post">
+
+    <label>Name:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" name="password" required><br><br>
+
+    <label>Role:</label><br>
+    <select name="role" required>
+        <option value="ADMIN">Admin</option>
+        <option value="INSTRUCTOR">Instructor</option>
+        <option value="STUDENT">Student</option>
+    </select><br><br>
+
+    <button type="submit">Add User</button>
+
+</form>
+
+<br>
+<a href="admin/users">Back to User List</a>
+
+</body>
+</html>
